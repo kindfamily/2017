@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // Object.create를 사용하면 변수(프로퍼티) 접근이 안됨 
+    function Car(){
+        this.name = "내차";
+        this.title = "타이틀"
+    }
+    Car.prototype.move = function(){
+        // 프로퍼티가 함께 안오기 때문에 this.name을 못불러옴
+        console.log(this.name + " 이동" );
+    };
+
+    // Object.create를 사용하면 변수(프로퍼티) 접근이 안됨 
+    var myCar = Object.create(Car.prototype);
+    myCar.move();  //undefined 
+
+
+    // 함께 읽을 수있도록 두번째 인자로 넣음
+    function Person(){
+    this.name = "hello";
+    }
+    Person.prototype.speack = function(){
+        console.log(this.name + " speack");
+    };
+
+    // prototype값만 가져오기때문에 필요한 변수는 따로 지정
+    var myMan = Object.create(Person.prototype , {
+        name : {
+            value : "myMan",   //초기 값 설정
+            writable : true   //쓰기가능 속성설정
+        }
+    });
+    myMan.speack();
+
+    // 그냥 처음 프로퍼티를 사용하고 싶을때 .call함수를 사용
+    function Car(){
+    this.name = "hyundai";
+    this.color = "red";
+    }
+    Car.prototype.move = function(){
+        console.log( "Car is " + this.color );
+    };
+
+    var subCar = Object.create( Car.prototype );
+    Car.call( subCar );  
+    subCar.move();
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" > 
+	<head>
+		<title>Jquery Animation</title>
+		<link rel="Stylesheet" href="MovingIcon.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="jquery-1.6.4.min.js"></script>
+		<script type="text/javascript" src="Moving.js"></script>
+		<style>
+		#icon_box { 
+			overflow:hidden; 
+			width:600px; 
+			margin:0 auto; 
+			}
+
+		.icon_wrap { 
+			width:300px; 
+			height:219px; 
+			float:left; 
+			position:relative; /*이미지는 Position 지정*/  
+			}
+
+		#img_ball { 
+			text-align:center; 
+			}
+
+		#img_iphone { 
+			margin-top:35px; 
+			cursor:hand; 
+			cursor:pointer; 
+			}
+		</style>
+	</head>
+	<body>
+		<div class="title"> 
+		Jquery Animation<br />
+		Moving Icon
+		</div>
+		<div class="contents">
+			<div id="icon_box"> <!--풍선 움직임 -->
+				<div class="icon_wrap">
+					<img id="img_ball" src="balloon.png" alt="풍선" />
+				</div>
+				<!--핸드폰 떨림 -->		
+				<div class="icon_wrap">
+					<img id="img_iphone" src="iphone.png" alt="아이폰" />
+				</div>
+			</div>
+		</div>
+		
+		<div id="toggle"></div>
+ 
+		<script>
+			 $(document).ready(function () {
+				 balloon_Moving();
+				 iphone_Init();  
+			 	}); //풍선 움직임 
+				
+			function balloon_Moving() { 
+				$("#img_ball") .animate({ marginTop: "30px" }, 1200, "", 
+				function () { $(this) .animate({ marginTop: "0px" }, 1200, "", function () { 
+				//자기 호출 
+				balloon_Moving(); 
+			}); 
+		}); 
+	 } 
+			//아이폰 움직임 초기화 
+			function iphone_Init() { $("#img_iphone").hover(function () { iphone_shake(); }, function () {
+				//MouseOut 시 애니메이션 Stop 
+				$(this).stop(); }); } 
+				//아이폰 쉐이크 
+				function iphone_shake() { $("#img_iphone") .animate({ marginLeft: "3px" }, 50, "", 
+				function () { $(this) .animate({ marginLeft: "0px" }, 50, "", 
+				function () { iphone_shake(); }); }); }
+		</script>		
+	</body>
+</html>
+

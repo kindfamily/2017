@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 외부 변수에 영향 받지 않는 예
+    // test라는 동일한 변수를 만들었지만 개별적으로 실행
+    // (function(){
+
+    // })(); 
+
+    var test = 20;
+
+    (function(){
+        var test = 10;
+        console.log(test); // 10
+    })();
+
+    console.log(test); // 20
+    
+    
+    // 필요한 변수만 받는법
+    var test = (function(){
+        var a = "1";
+        return {
+            b : "2",
+            c : "3"
+        };
+    })();
+    console.log(test.a); //undefined
+    console.log(test.b);
+
+    // 그냥 함수와의 차이점은 함수는 test.b  요런식으로 값에 다가갈수 없다  
+    var test = function(){
+    var a = "1";
+    return {
+        b  : "2",
+        c : "3"
+    };
+    });
+
+
+    // 네임스페이스 일종에 별명이며 예약어, 몇개든 생성 가능
+    (function(d ,w){
+        d.write('222');
+        w.alert('alert 11');
+    })(document, window);
+
+    </script>
+</body>
+</html>

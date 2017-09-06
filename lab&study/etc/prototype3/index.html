@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+   <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatibel" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>linked</title>
+		<!-- Jquery CDN	-->
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+		<!-- 합쳐지고 최소화된 최신 CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+		<!-- 부가적인 테마 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+		<!-- 각종 효과 css 모음 -->
+		<!--<link rel="stylesheet" href="./css/style.css">-->
+
+		<!-- Dom 노드들 조각 모음 -->
+		<!--<script src="./js/helper.js"></script>-->
+
+		<!-- 진동이미지 jquery ui 라이브러리 -->
+		<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  		<script src="./jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+   </head>
+   <body>
+      <div class="container">
+           <div class="row">
+               <div id="header" class="col-md-12"></div>
+           </div>
+           <div class="row">
+           		<div class="col=md-12">
+					<!-- 검색표 -->
+           			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+					<!-- todo: li a 안에 데이터 변경해서 javascript로 뿌려주는 틀 만들기 유다시티 폼 -->
+					<ul id="myUL">
+						<li class="toggle">
+							<a href="https://story.kakao.com/ch/tuntun">
+								<h4>【추천카카오스토리】
+									<img src="./img/kakaostrorylogo.png" alt="">
+								</h4>이벤트,교재,교육정보 얻을수 있는 튼튼영어 공식 카카오스토리
+							</a>
+						</li>
+						<li class="toggle"><a href="https://pf.kakao.com/_fALxdxl"><h4>【추천카카오플러스】<img src="./img/kakaostrorylogo.png" alt=""></h4>이벤트,교재,교육정보 얻고 문의할수 있는 튼튼영어 공식 카카오플러스</a></li>
+					</ul>
+          		<div id="book" class="row"></div>
+           		</div>
+           </div>
+      </div>
+	<script>
+	// 검색 폼 자바스크립트
+	function myFunction() {
+		// Declare variables
+		var input, filter, ul, li, a, i;
+		input = document.getElementById('myInput');
+		filter = input.value.toUpperCase();
+		ul = document.getElementById("myUL");
+		li = ul.getElementsByTagName('li');
+
+		// Loop through all list items, and hide those who don't match the search query
+		for (i = 0; i < li.length; i++) {
+			a = li[i].getElementsByTagName("a")[0];
+			if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				li[i].style.display = "";
+			} else {
+				li[i].style.display = "none";
+			}
+		}
+	}
+	</script>
+
+	<script>
+	$( document ).ready(function() {
+	$( ".toggle" ).delay(600).effect( "shake" );
+	});
+	</script>
+
+
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  
+    <script src="js/app.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  </body>
+</html>

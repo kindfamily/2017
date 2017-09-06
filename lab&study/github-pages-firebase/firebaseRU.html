@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Firebase Web Quickstart</title>
+        <style>
+            .cardBox{
+                border: 1px solid black;
+            }
+        </style>
+	</head>
+	<body>
+    
+ 
+	    <button id="plus">+</button>
+	    <script>
+         $("#plus").click(function(){
+             var box ='<h1>1111111</h1>'
+             '<h1>카카오스토리<span class="badge">%data%</span></h1>'
+             $(body).append(box); 
+         });
+        </script>
+	    
+		<div class="cardBox">
+		    <h1>name: <input id="inputname" type="text"></h1>
+            <h1>subname: <input id="inputsubname" type="text"></h1>
+            <button id="button" type="submit">Submit</button>
+            <h1>showname: <h1 id="showname"></h1></h1>
+            <h1>showsubname: <h1 id="showsubname"></h1></h1>
+            
+            <h1 id="display"></h1>
+		</div>
+            <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script>
+              // Initialize Firebase
+              var config = {
+                apiKey: "AIzaSyA9N7yJF_SSuA5KjqsmefM3XmQJL4obVOg",
+                authDomain: "web-quickstart-bed85.firebaseapp.com",
+                databaseURL: "https://web-quickstart-bed85.firebaseio.com",
+                projectId: "web-quickstart-bed85",
+                storageBucket: "web-quickstart-bed85.appspot.com",
+                messagingSenderId: "161167707098"
+              };
+              firebase.initializeApp(config);
+    //      ID가 bigOne인 H1테그에 text의 값을 넣어라 		
+    //		var bigOne = document.getElementById('bigOne');
+    //		var dbRef = firebase.database().ref().child('text');
+    //		dbRef.on('value', snap => bigOne.innerText = snap.val());
+    //		
+            var database = firebase.database();
+            var name = "";
+
+            $("#button").on("click", function(){
+                name = $("#inputname").val().trim();
+                console.log(name);
+                subname = $("#inputsubname").val().trim();
+
+                database.ref().set({
+                    name: name,
+                    subname: subname
+                });
+            });	
+
+            var nameShow = database.ref().child('name');
+            nameShow.on('value', snap => showname.innerText = snap.val());
+
+            var namesubShow = database.ref().child('subname');
+            namesubShow.on('value', snap => showsubname.innerText = snap.val());
+
+            </script>	
+ 		
+	</body>
+</html>

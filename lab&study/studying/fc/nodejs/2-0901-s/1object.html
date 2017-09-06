@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>객체 선언방법 </h1>
+    <h2> 리터럴 표현법 </h2>
+    <h2> 함수로 표현 </h2>
+    
+    <script>
+        // 리터럴 선언과 표현 방법
+        var a = {
+            numberVal : 111,
+            arrayVal : "zzz",
+            arrayList : [1,2,3],
+            Speack : function(){
+                consoloe.log("function");
+            }
+        }
+        console.log(a);
+
+        // 출력
+        console.log(a.numberVal);
+        console.log(a.arrayVal );
+    
+        // 내용 추가
+        var a = {
+            numberVal : 111,
+            arrayVal : "zzz",
+        }
+        a.addNumber = 222;
+        console.log(a.addNumber);
+
+
+        // 객체의 멤버값을 반복문으로 출력하기
+        // 멤버와 값을 출력
+        var b = {
+            numberVal : 111,
+            arrayVal : "zzz",
+            arrayList : [1,2,3],
+            speack : function(){
+                consoloe.log("function");
+            }
+        }
+
+        for(var property in b){
+            console.log(   property + "/ " + a[property]);
+        }
+
+        // 함수표현법
+        function test(name, title){
+            // public 변수 > 함수밖에서도 사용가능
+            // 함수내에서 this.name 멤버생성
+            // private 변수 > 함수안에서만 사용가능 
+            // 함수내에서 var로 멤버생성
+            this.name = name;
+            this.title = title;
+        }
+        var myTest = new test( "park" , "jjjj")
+        console.log(myTest.name);
+
+
+        // private  변수 
+        function test2(name, title){
+            this.name = name;
+            this.title = title;
+            // private 변수 > 함수안에서만 사용가능 
+            // 함수내에서 var로 멤버생성
+            var private = “private variable”;
+        }
+        var myTest = new test2( "park" , "jjjj")
+        console.log(myTest. private);
+        //undefined 에러발생( 내부에서만 접근가능 )
+   
+
+        // 내부 private  변수 접근방법
+        function test(name, title){
+            this.name = name;
+            this.title = title;
+            var privateVal = "private variable";
+            this.privatePrint = privateVal; 
+            //접근할 공용변수 생성
+        }
+        var myTest = new test( "park" , "jjjj");
+        console.log(myTest.privatePrint);
+
+        // prototype
+        // 기본형태
+        function Car(){
+            this.name = "My Car";
+        }
+
+        Car.prototype.move = function(){
+            console.log(this.name + " move");
+        }   //prototype으로 멤버추가
+
+        var myCar = new Car();
+        myCar.move();
+        
+        //prototype
+        //멤버변수로도 선언
+        function Car(){
+            this.name = "My Car";
+        }
+        Car.prototype.color = "red";
+        Car.prototype.move = function(){
+            console.log(this.name + " is " + this.color);
+        }
+        var myCar = new Car();
+        myCar.move();
+
+        // inheritain(상속)
+        // 상속시키는 변수나 메서드를 사용하기 위함
+        //New키워드를 이용한 구현
+        function Car(){
+            this.name = "super name";
+            this.showName = function(){
+                console.log(this.name + " is print");
+            }
+        }
+        function Taxi(){
+            var _super = new Car();
+            _super.name = "taxi name";
+            return _super;
+        }
+        var myTaxi = new Taxi();
+        myTaxi.showName();
+
+        console.log(myTaxi instanceof Car);
+        //True
+        console.log(myTaxi instanceof Taxi);
+        //False
+
+        //-> Taxi의 인스턴스로 선언을 했지만
+        //Car의 인스턴스로 인식함
+    </script>
+</body>
+</html>

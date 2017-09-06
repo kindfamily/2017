@@ -1,0 +1,36 @@
+
+
+
+
+
+
+
+<html>
+<head>
+	<!-- Jquery CDN	-->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div>
+	<div id="header">
+		<div></div>
+	</div>
+</div>
+<script>
+	$( document ).ready(function() {
+		var data = {
+			"name": "gimpo"
+		};
+
+		var HTMLreplace = {};
+		HTMLreplace.HTML = function(){
+			var HTMLdiv = '<div>%data</div>';
+			var replaceDiv = HTMLdiv.replace("%data", data.name);
+
+			$('#heaer').append(replaceDiv);
+		};
+		HTMLreplace.HTML();
+	});
+</script>
+</body>	
+</html>

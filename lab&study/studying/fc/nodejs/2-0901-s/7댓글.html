@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>댓글 연습</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <div class="container" style="padding-top: 100px">
+        <div>
+            <h3>여기는 댓글영역</h3>
+            <ul id="commentArea"></ul>
+        </div>
+
+        <hr />
+
+        <div>
+            <form id="commentForm">
+                <input type="text" name="comment" class="form-control" style="width: 200px; float: left; margin-right:30px;">
+                <button class="btn btn-primary">댓글작성하기</button>
+            </form>
+        </div>
+    </div>
+
+
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#commentForm').submit(function(){
+        var commentVal = $('#commentForm input[name=comment]').val();
+        $('#commentArea').append('<li>' + commentVal  +'</li>');
+        return false;
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+/*  css */
+			body{
+				padding: 20px;
+			}
+			
+/*
+			.col-md-12{
+				border-bottom: 1px solid gray;
+			}
+*/
+
+/*	검색 디자인  */
+			#myInput {
+			background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+			background-position: 10px 12px; /* Position the search icon */
+			background-repeat: no-repeat; /* Do not repeat the icon image */
+			width: 100%; /* Full-width */
+			font-size: 16px; /* Increase font-size */
+			padding: 12px 20px 12px 40px; /* Add some padding */
+			border: 1px solid #ddd; /* Add a grey border */
+			margin-bottom: 12px; /* Add some space below the input */
+		}
+
+		#myUL {
+			/* Remove default list styling */
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		#myUL li a {
+			border: 1px solid #ddd; /* Add a border to all links */
+			margin-top: -1px; /* Prevent double borders */
+			background-color: #e1f08e; /* Grey background color 일반리스트 평소 색깔*/
+			padding: 12px; /* Add some padding */
+			text-decoration: none; /* Remove default text underline */
+			font-size: 18px; /* Increase the font-size */
+			color: black; /* Add a black text color */
+			display: block; /* Make it into a block element to fill the whole list */
+		}
+
+		#myUL li a.header {
+			background-color: #e2e2e2; /* Add a darker background color for headers */
+			cursor: default; /* Change cursor style */
+		}
+
+		#myUL li a:hover:not(.header) {
+			background-color: #eee; /* Add a hover effect to all links, except for headers */
+		}
+
+/*	카카오스토리 링크 썸네일 이미지 수정 */
+		li img {
+			padding-left: 10px;
+		}
+		
+
+/* 툴팁 스타일 */
+		.tooltip {
+		position: relative;
+		display: inline-block;
+		border-bottom: 1px dotted black;
+	}
+
+	.tooltip .tooltiptext {
+		visibility: hidden;
+		width: 120px;
+		background-color: #555;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 0;
+		position: absolute;
+		z-index: 1;
+		bottom: 125%;
+		left: 50%;
+		margin-left: -60px;
+		opacity: 0;
+		transition: opacity 1s;
+	}
+
+	.tooltip .tooltiptext::after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: #555 transparent transparent transparent;
+	}
+
+	.tooltip:hover .tooltiptext {
+		visibility: visible;
+		opacity: 1;
+	}

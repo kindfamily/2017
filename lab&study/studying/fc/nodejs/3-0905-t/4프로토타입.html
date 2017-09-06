@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // prototype을 선안하게 되면 한곳만 바라보게됨
+    function Car(){ }
+    console.log(Car.prototype);
+
+    // 공유하는 개념의 prototype
+    function Car(){}
+    var myCar1 = new Car();  //Car의 prototype을 참조함
+    var myCar2 = new Car();  //Car의 prototype을 참조함
+    var myCar3 = new Car();  //Car의 prototype을 참조함
+
+    Car.prototype.color = "red"; //prototpye 선언
+    console.log(myCar1.color);
+    console.log(myCar2.color);
+    console.log(myCar3.color);
+
+   
+    Car.prototype.color = "blue"; //prototpye 중간에 변경하면 한번에 변경됨
+    console.log(myCar1.color);
+    console.log(myCar2.color);
+    console.log(myCar3.color);
+
+    //myCar1, myCar2, myCar3이 같은 protype을 참조하므로 
+    //red 출력
+
+
+    // property일때문 출력해보기, 프로퍼티와 프로토타입은 다른것이다
+    function Car(){
+        // 프로퍼티
+        this.name = "첫번째";
+        this.title = "타이틀";
+    }
+    // 질문 : car.name() 요렇게 가능한건지? ,
+    // pro1, pro2는 prototype안에 있는 변수 
+    Car.prototype.pro1 = "val1";
+    Car.prototype.pro2 = "val2";
+
+    // new 키워드를 사용하면 프로퍼티와 프로토 타입을 전부 받아오는데 object를 활용하면 prototype만 가져오게 된다
+    var myCar = new Car();
+
+    var prop;
+    for(prop in myCar){
+    // hasOwnProperty 함수는 prototype인지 확인하는 함수
+        if(myCar.hasOwnProperty(prop)){
+            console.log(prop + " = "+ myCar[prop]);
+        }
+    }
+</script>
+    
+</body>
+</html>

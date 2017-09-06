@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>보험클로젯</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/district.js"></script>
+    <script src="./db/job.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header" class="alt">
+        <div class="logo"><a href="index.html">보험클로젯</a></div>
+        <a href="#menu">Menu</a>
+    </header>
+    <!-- Nav -->
+    <nav id="menu">
+        <ul class="links">
+            <li><a href="index.html">홈</a></li>
+            <li><a href="generic.html">상세내역</a></li>
+        </ul>
+    </nav>
+    <!-- Banner -->
+    <style>
+    /*
+        .input_dl dt input {
+            background: #dfe2e5;
+            
+        }
+*/
+
+    .input_dl {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .input_dl dt input::placeholder {
+        color: black !important;
+    }
+
+    .input_dl dt select {
+        background: #dfe2e5;
+        color: black;
+        width: auto;
+        display: inline-block;
+    }
+
+    .input_dl dt div {
+        display: inline-block;
+    }
+
+    .input_dl dt select option {
+        color: black !important;
+    }
+
+    dl {
+        padding: 20px;
+        color: black;
+        margin-top: 10px;
+        border-radius: 25px;
+        background: #dfe2e5;
+    }
+
+    dt {
+        width: 100%;
+    }
+
+    .input_dl dt h4 {
+        color: black;
+    }
+
+    .filebox input[type="file"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+
+    .filebox label {
+        display: inline-block;
+        padding: .5em .75em;
+        color: white;
+        font-size: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #5cb85c;
+        cursor: pointer;
+        border: 1px solid #4cae4c;
+        border-radius: .25em;
+    }
+
+    .filebox .upload-name {
+        display: inline-block;
+        padding: .5em .75em;
+        font-size: inherit;
+        font-family: inherit;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #5cb85c;
+        border: 1px solid #4cae4c;
+        border-radius: .25em;
+        appearance: none;
+    }
+
+    .btn-detail {
+        background-color: #5bc0de;
+        border: 1px solid #46b8da;
+        border-radius: 5px;
+        color: white !important;
+        font-weight: bold;
+    }
+
+    .col-centered {
+        text-align: center;
+    }
+    </style>
+    <section class="banner full">
+        <article>
+            <img src="images/slide05.jpg" alt="" />
+            <div class="inner">
+                <header>
+                    <h2>간단정보입력</h2>
+                    <dl class="input_dl">
+                        <dt class="6u 12u$(xsmall)">
+                            <h4>결혼여부</h4>
+                            <div class="4u 12u$(small)">
+                                <input type="radio" id="priority-low" class="radio-married" name="priority" value="married" checked>
+                                <label for="priority-low">기혼</label>
+                            </div>
+                            <div class="4u 12u$(small)">
+                                <input type="radio" id="priority-normal" class="radio-single" value="single" name="priority" checked="checked">
+                                <label for="priority-normal">미혼</label>
+                            </div>
+                        </dt>
+                        <dt class="6u$ 12u$(xsmall) select-wrapper">
+                            <h4>자녀</h4>
+                            <select class="select-child">
+                                <option value="">-- 자녀 --</option>
+                                <option value="1" selected>자녀없음</option>
+                                <option value="1">1자녀</option>
+                                <option value="1">2자녀</option>
+                                <option value="1">3자녀</option>
+                                <option value="1">4자녀이상</option>
+                            </select>
+                        </dt>
+                        <dt class="6u$ 12u$(xsmall) select-wrapper">
+                            <h4>업종</h4>
+                            <select class="job-one">
+                                <option value="">정보통신관련직</option>
+                            </select>
+                            <select class="job-two">
+                                <option value="">소프트웨어개발전문가</option>
+                            </select>
+                        </dt>
+                        <dt class="6u$ 12u$(xsmall) select-wrapper">
+                            <h4>지역</h4>
+                            <select id="district_city">
+                                <option value="">서울특별시</option>
+                            </select>
+                            <select id="district_gu">
+                                <option value="">서초구</option>
+                            </select>
+                            <select id="district_dong">
+                                <option value="">양재 1동</option>
+                            </select>
+                        </dt>
+                        <dt class="6u$ 12u$(xsmall) select-wrapper">
+                            <h4>나이</h4>
+                            <select>
+                                <option value="">-- 연령 선택 --</option>
+                                <option value="20">20대</option>
+                                <option value="30" selected>30대</option>
+                                <option value="40">40대</option>
+                                <option value="50">50대이상</option>
+                            </select>
+                        </dt>
+                        <dt class="6u$ 12u$(xsmall)">
+                            <h4>성별</h4>
+                            <div class="4u 12u$(small)">
+                                <input type="radio" id="priority-low3" name="priority3" checked>
+                                <label for="priority-low3">남</label>
+                            </div>
+                            <div class="4u 12u$(small)">
+                                <input type="radio" id="priority-normal3" name="priority3" checked="checked">
+                                <label for="priority-normal3">여</label>
+                            </div>
+                        </dt>
+                        <dt>
+                            <h4>증권 업로드</h4>
+                            <div class="4u 12u$(small)">
+                                <div class="filebox">
+                                    <label for="ex_filename">파일 선택</label>
+                                    <input type="file" id="ex_filename" class="upload-hidden">
+                                </div>
+                            </div>
+                        </dt>
+                        <dt>
+                            <footer id="foo" class="align-center">
+                                <a href="generic.html">
+                                    <button class="btn-detail">자세히보기</button>
+                                </a>
+                            </footer>
+                        </dt>
+                    </dl>
+                </header>
+            </div>
+        </article>
+    </section>
+    <!-- One -->
+    <section id="one" class="wrapper style2">
+        <div class="inner">
+            <div class="grid-style">
+                <div>
+                    <div class="box">
+                        <div class="image fit">
+                            <img src="images/guarantee.jpg" alt="" />
+                        </div>
+                        <div class="content">
+                            <header class="align-center">
+                                <p>Compare my guarantees</p>
+                                <h2>나의 보장내역 비교해보기</h2>
+                            </header>
+                            <footer class="align-center">
+                                <a href="generic.html" class="button alt">자세히보기</a>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="box">
+                        <div class="image fit">
+                            <img src="images/consult.jpg" alt="" />
+                        </div>
+                        <div class="content">
+                            <header class="align-center">
+                                <p>Talk to a professional counselor</p>
+                                <h2>전문 상담사와 상의해 보세요 </h2>
+                            </header>
+                            <footer class="align-center">
+                                <a href="#" class="button alt">자세히보기</a>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Two -->
+    <section id="two" class="wrapper style3">
+        <div class="inner">
+            <header class="align-center">
+                <p>Good insurance</p>
+                <h2>착한보험</h2>
+            </header>
+        </div>
+    </section>
+    <!-- Three -->
+    <section id="three" class="wrapper style2">
+        <div class="inner">
+            <header class="align-center">
+                <p class="special">Good insurance information</p>
+                <h2>착한 보험정보</h2>
+            </header>
+            <br><br>
+            <div class="col-centered">
+                <img src="./images/logo.png">
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <ul class="icons">
+                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            &copy; Untitled. All rights reserved.
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script>
+    var selected_city = "";
+    var selected_gu = "";
+    var selected_job = "";
+
+    for (j in job) {
+        var html = "<option>" + j + "</option>"
+        $('.job-one').append(html);
+    }
+
+    for (city in district) {
+        var html = "<option>" + city + "</option>"
+        $('#district_city').append(html);
+    }
+
+    $('#district_city').change(function() {
+        selected_city = $('#district_city').val();
+        var gu_s = district[selected_city];
+
+        for (gu in gu_s) {
+            var html = "<option>" + gu + "</option>"
+            $('#district_gu').append(html);
+        }
+    });
+
+    $('#district_gu').change(function() {
+        selected_gu = $('#district_gu').val();
+        var dong_s = district[selected_city][selected_gu];
+
+        for (var i in dong_s) {
+            var html = "<option>" + dong_s[i] + "</option>"
+            $('#district_dong').append(html);
+        }
+    });
+
+    $('.job-one').change(function() {
+        var j = $('.job-one').val();
+        var selected_job = $('.job-one').val();
+
+        for(var i in j) {
+            var html = "<option>" + job[selected_job][i] + "</option>"
+            $('.job-two').append(html);
+        }
+    });
+    </script>
+</body>
+
+</html>

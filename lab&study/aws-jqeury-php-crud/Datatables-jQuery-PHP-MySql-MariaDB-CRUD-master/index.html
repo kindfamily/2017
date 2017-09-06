@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>daliy todolist</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilos.css">
+	
+	<!-- Buttons DataTables -->
+	<link rel="stylesheet" href="css/buttons.bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+</head>
+<body>
+	<div class="row fondo">
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<h1 class="text-center text-uppercase"> 지사운영 워크플로워/가망회원todolist (
+			DataTables - Ajax - PHP - MySql / MariaDB)</h1>
+		</div>
+	</div>
+	
+	<div class="row">
+		<!-- 수정 페이지 -->
+		<div id="cuadro2" class="col-sm-12 col-md-12 col-lg-12 ocultar">
+			<form class="form-horizontal" action="" method="POST">
+				<div class="form-group">
+					<h3 class="col-sm-offset-2 col-sm-8 text-center">					
+					회원정보</h3>
+				</div>
+				<input type="hidden" id="idusuario" name="idusuario" value="0">
+				<input type="hidden" id="opcion" name="opcion" value="registrar">
+				<div class="form-group">
+					<label for="nombre" class="col-sm-2 control-label">이름</label>
+					<div class="col-sm-8"><input id="nombre" name="nombre" type="text" class="form-control"  autofocus></div>				
+				</div>
+				<div class="form-group">
+					<label for="apellidos" class="col-sm-2 control-label">메모</label>
+					<div class="col-sm-8">
+            		<textarea id="apellidos" name="apellidos" class="form-control" ></textarea>
+<!--					    <input id="apellidos" name="apellidos" type="textarea" class="form-control" > -->
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="apellidos" class="col-sm-2 control-label">전화번호</label>
+					<div class="col-sm-8">
+	                   <input id="dni" name="dni" type="text" class="form-control" maxlength="15"> 
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<input id="" type="submit" class="btn btn-primary" value="수정">
+						<input id="btn_listar" type="button" class="btn btn-primary" value="취소">
+					</div>
+				</div>
+			</form>
+			<div class="col-sm-offset-2 col-sm-8">
+				<p class="mensaje"></p>
+			</div>
+			
+		</div>
+	</div>
+	<div class="row">
+		<div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
+			<div class="col-sm-offset-2 col-sm-8">
+				<h3 class="text-center"> <small class="mensaje"></small></h3>
+			</div>
+			<div class="table-responsive col-sm-12">		
+				<table id="dt_cliente" class="table table-bordered table-hover" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+                        <!-- 메인 페이지 최상위 컬럼	-->
+							<th>이름</th>
+							<th>메모</th>
+							<th>연락처</th>
+							<th></th>											
+						</tr>
+					</thead>					
+				</table>
+			</div>			
+		</div>		
+	</div>
+	<div>
+		<form id="frmEliminarUsuario" action="" method="POST">
+			<input type="hidden" id="idusuario" name="idusuario" value="">
+			<input type="hidden" id="opcion" name="opcion" value="eliminar">
+			
+			<!-- Modal -->
+			<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="modalEliminarLabel">사용자 삭제</h4>
+						</div>
+						<div class="modal-body">							
+							정말 삭제 하시겠습니까?<strong data-name=""></strong>
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="eliminar-usuario" class="btn btn-primary" data-dismiss="modal">삭제</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Modal -->
+		</form>
+	</div>
+    <!-- 자바스크립트 라이브러리들 -->
+	<script src="js/jquery-1.12.3.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script src="js/dataTables.bootstrap.js"></script>
+	<!--botones DataTables-->	
+	<script src="js/dataTables.buttons.min.js"></script>
+	<script src="js/buttons.bootstrap.min.js"></script>
+	<!--Libreria para exportar Excel-->
+	<script src="js/jszip.min.js"></script>
+	<!--Librerias para exportar PDF-->
+	<script src="js/pdfmake.min.js"></script>
+	<script src="js/vfs_fonts.js"></script>
+	<!--Librerias para botones de exportación-->
+	<script src="js/buttons.html5.min.js"></script>
+
+	<script>
+		// 페이지가 로드 되었을때 리스트, 저장하기, 제거하기 함수 준비 시키기
+		$(document).on("ready", function(){
+			// listar = 목록
+            listar();
+            // guardar = 저장
+			guardar();
+            // eliminar = 제거
+			eliminar();
+		});
+
+		// btn_listar 수정페이지에 수정 버튼 id 값 을 눌렀을때 리스트 뿌려주는 함수를 불러라
+		$("#btn_listar").on("click", function(){
+			listar();
+		});
+		
+		// guardar = 저장 하는 함수
+		var guardar = function(){
+			$("form").on("submit", function(e){
+                // preventDefault Prevent a link from opening the URL:
+				e.preventDefault();
+				var frm = $(this).serialize();
+                // https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_ajax_serialize
+				$.ajax({
+					method: "POST",
+					url: "guardar.php",
+					data: frm
+				}).done( function( info ){
+					console.log( info );
+					var json_info = JSON.parse( info );
+                    // mostrar_mensaje = 표시 메시지
+					mostrar_mensaje( mostrar_mensaje );
+                    // limpiar_datos == 깨끗한 데이터
+					limpiar_datos();
+					listar();
+				});
+			});
+		}
+
+		// eliminar = 제거 하는 함수
+		var eliminar = function(){
+            // eliminar= 제거, usuario = 사용자
+			$("#eliminar-usuario").on("click", function(){
+				var idusuario = $("#frmEliminarUsuario #idusuario").val(),
+					opcion = $("#frmEliminarUsuario #opcion").val();
+				$.ajax({
+					method:"POST",
+					url: "guardar.php",
+                    // 서버로 data를 보낼때 data: 를 사용한다 idusuario = 사용자 아이디, opcion= 선택권
+					data: {"idusuario": idusuario, "opcion": opcion}
+				    // .done(function(){ console.log("요청 성공시 호출") })
+                }).done( function( info ){
+					var json_info = JSON.parse( info );
+					mostrar_mensaje( json_info );
+					limpiar_datos();
+					listar();
+				});
+			});
+		}
+
+		// mostrar = 표시 mensaje = 메시지 메시지 표시하는 함수 
+		var mostrar_mensaje = function( informacion ){
+			var texto = "", color = "";
+            // informacion = 정보 , respuesta = 대답
+			if( informacion.respuesta == "BIEN" ){
+					texto = "<strong>음!</strong> 변경이 제대로 저장되었습니다.";
+					color = "#379911";
+			}else if( informacion.respuesta == "ERROR"){
+					texto = "<strong>Error</strong>, 쿼리가 실행되지 않았습니다.";
+					color = "#C9302C";
+			}else if( informacion.respuesta == "EXISTE" ){
+					texto = "<strong>Información!</strong> 사용자가 이미 있습니다.";
+					color = "#5b94c5";
+			}else if( informacion.respuesta == "VACIO" ){
+					texto = "<strong>경고!</strong> 당신은 모든 필수 필드를 완료해야합니다.";
+					color = "#ddb11d";
+			}else if( informacion.respuesta == "OPCION_VACIA" ){
+					texto = "<strong>경고!</strong> 옵션이 페이지를 다시 로드, 없거나 비어";
+					color = "#ddb11d";
+			}
+
+			$(".mensaje").html( texto ).css({"color": color });
+			$(".mensaje").fadeOut(5000, function(){
+					$(this).html("");
+					$(this).fadeIn(3000);
+			});			
+		}
+        
+        // limpiar_datos = 깨끗한 정보 / input 박스에 정보 입력한 값 함수
+		var limpiar_datos = function(){
+            // opcion = 선택권, registrar = 등록
+			$("#opcion").val("registrar");
+            // idusuario = 사용자id 
+			$("#idusuario").val("");
+            // nombre = 이름
+			$("#nombre").val("").focus();
+            // apellidos = 성씨
+			$("#apellidos").val("");
+            // dni = 일( day )
+			$("#dni").val("");
+		}
+        
+        // 리스트 뿌려주는 함수
+		var listar = function(){
+                // cuadro2 수정 페이지 , cuadro1 회원정보 출력 페이지 
+				$("#cuadro2").slideUp("slow");
+				$("#cuadro1").slideDown("slow");
+                // dt_cliente 는 회원 목록 뿌려주는 div 
+			var table = $("#dt_cliente").DataTable({
+                // .DataTable은 DataTable plug in을 이용해 배열을 불러오는 방법 https://datatables.net/manual/ajax
+				//"processing": true,
+				//"serverSide": true,
+				"destroy":true,
+				"ajax":{
+					"method":"POST",
+					"url": "listar.php"
+				},
+				"columns":[
+					{"data":"nombre"},
+					{"data":"apellidos"},
+					{"data":"dni"},
+					{"defaultContent": "<button type='button' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+                    // i class='fa fa-pencil-square-o'></i>는 폰트 사이트 링크 http://fontawesome.io/icon/pencil-square-o/
+				],
+				"language": idioma_espanol,
+				"dom": "<'row'<'form-inline' <'col-sm-offset-5'B>>>"
+					 +"<'row' <'form-inline' <'col-sm-1'f>>>"
+					 +"<rt>"
+					 +"<'row'<'form-inline'"
+					 +" <'col-sm-6 col-md-6 col-lg-6'l>"
+					 +"<'col-sm-6 col-md-6 col-lg-6'p>>>",
+				"buttons":[
+					{
+						"text": "<i class='fa fa-user-plus'></i>",
+						"titleAttr": "Agregar Usuario",
+						"className": "btn btn-success",
+						"action": function(){
+							agregar_nuevo_usuario();
+						}
+					},
+					{
+		                extend:    'excelHtml5',
+		                text:      '<i class="fa fa-file-excel-o"></i>',
+		                titleAttr: 'Excel'
+		         },
+		         {
+		         	extend: 'csvHtml5',
+		         	text: '<i class="fa fa-file-text-o"></i>',
+		         	titleAttr: 'CSV'
+		         },
+		         {
+		                extend:    'pdfHtml5',
+		                text:      '<i class="fa fa-file-pdf-o"></i>',
+		                titleAttr: 'PDF'
+		         }
+				]
+			});
+
+			obtener_data_editar("#dt_cliente tbody", table);
+			obtener_id_eliminar("#dt_cliente tbody", table);
+		}
+
+		// agregar = 추가 nuevo = 새로운 usuario = 사용자  새로운 사용자 추가하는 함수
+		var agregar_nuevo_usuario = function(){
+			limpiar_datos();
+			$("#cuadro2").slideDown("slow");
+			$("#cuadro1").slideUp("slow");
+		}
+        
+        // obtener = 수 , editar = 편집 데이터의 수를 편집하는 함수
+		var obtener_data_editar = function(tbody, table){
+			$(tbody).on("click", "button.editar", function(){
+				var data = table.row( $(this).parents("tr") ).data(); 
+				// idusuario = 사용자 id nombre = 이름 apellidos = 성씨 dni = 일 opcion = 선택권
+				var idusuario = $("#idusuario").val( data.idusuario ),
+						nombre = $("#nombre").val( data.nombre ),
+						apellidos = $("#apellidos").val( data.apellidos ),
+						dni = $("#dni").val( data.dni ),
+						opcion = $("#opcion").val("modificar");
+
+						$("#cuadro2").slideDown("slow");
+						$("#cuadro1").slideUp("slow");
+			});
+		}
+
+		// obtener = 수 eliminar = 제거 id 제거 함수 
+		var obtener_id_eliminar = function(tbody, table){
+			$(tbody).on("click", "button.eliminar", function(){
+				var data = table.row( $(this).parents("tr") ).data();
+				var idusuario = $("#frmEliminarUsuario #idusuario").val( data.idusuario );
+			});
+		}
+
+		// idioma = 언어 espanol = 스페인어
+		// 페이지에 출력되는 버튼들의 객체 모음
+		var idioma_espanol = {
+		    "sProcessing":     "Procesando...",
+		    "sLengthMenu":     "Mostrar _MENU_ registros",
+		    "sZeroRecords":    "No se encontraron resultados",
+		    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+		    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+		    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+		    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		    "sInfoPostFix":    "",
+		    "sSearch":         "검색:",
+		    "sUrl":            "",
+		    "sInfoThousands":  ",",
+		    "sLoadingRecords": "Cargando...",
+		    "oPaginate": {
+		        "sFirst":    "Primero",
+		        "sLast":     "Último",
+		        "sNext":     "다음",
+		        "sPrevious": "이전"
+		    },
+		    "oAria": {
+		        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+		        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		    }
+		}
+		
+
+	</script>
+</body>
+</html>

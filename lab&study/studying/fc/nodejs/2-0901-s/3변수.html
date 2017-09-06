@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // global
+    // Function안에서 존재하지 않을시 그 위 상위의 변수를 참조
+    // 아래를 보면 그위 상위를 참조
+
+    var abc = 1;   // global 범위
+    function test(){ 
+        var bbb = 2;
+        console.log(abc); // 여긴 접근가능 상위를 참조했으므로
+    }
+
+    test();
+    console.log(bbb); //bbb가 선언되지 않았다는 오류 발생
+
+
+    // global 선언법
+    // Global 변수 ( 전역변수 – 어디든 접근가능 )
+    // Var 없이 선언
+    // Ex ) my_variable = 200;
+
+    // 글로벌 변수로 선언시 window객체의 멤버가됨
+
+    // Ex) my_variable = 200;
+    // Window.my_variable =200;
+
+    
+</script>
+    
+</body>
+</html>

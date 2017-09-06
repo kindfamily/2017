@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="clickDiv">
+        글자색 변환
+    </div>
+    <!-- <script>
+    // jquery 원소스 모양 
+    function jQuery(aaaa){
+
+    }
+
+    var $ = jQuery;
+
+    $('#abc') -->
+
+    <!-- jqeury 플러그인 만들기 jquey를 커스터 마이징 할수 있는 방법-->
+    <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+    
+    <script>
+    (function($){
+        //changeColor 라는 함수를 jQuery에 추가
+        $.fn.changeColor = function(){
+            console.log(this);
+            $(this).css('color', "red");
+        };
+        $(document).ready(function() {
+            $('#clickDiv').changeColor();
+        });
+    })(jQuery);
+    </script>
+
+    
+</body>
+</html>

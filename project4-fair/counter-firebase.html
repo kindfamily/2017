@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">    
+    <head>
+    <!-- meta 검색시 긁어갈 정보, 인코딩 문자열 선언 -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    <!-- jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- firebase CDN    -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+    <!-- bootstrap CDN -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <style>
+        #likes{
+             font-size: 30px;
+             border: 1px solid black;
+             text-align: center;
+             display:table-cell;
+             vertical-align:middle;
+             width:400px;
+             height:400px;
+             border-radius:200px;
+             -moz-border-radius : 100px;
+             -webkit-border-radius : 100px;
+             -ms-border-radius :100px;
+             -khtml-border-radius : 100px;
+             -o-border-radius :100px;
+        }
+        #likes2{
+             font-size: 30px;
+             border: 1px solid black;
+             text-align: center;
+             display:table-cell;
+             vertical-align:middle;
+             width:400px;
+             height:400px;
+             border-radius:100px;
+             -moz-border-radius : 100px;
+             -webkit-border-radius : 100px;
+             -ms-border-radius :100px;
+             -khtml-border-radius : 100px;
+             -o-border-radius :100px;
+        }
+        
+        #likes3{
+             font-size: 30px;
+             border: 1px solid black;
+             text-align: center;
+             display:table-cell;
+             vertical-align:middle;
+             width:400px;
+             height:400px;
+             border-radius:100px;
+             -moz-border-radius : 100px;
+             -webkit-border-radius : 100px;
+             -ms-border-radius :100px;
+             -khtml-border-radius : 100px;
+             -o-border-radius :100px;
+        }
+        
+        #likes4{
+             font-size: 30px;
+             border: 1px solid black;
+             text-align: center;
+             display:table-cell;
+             vertical-align:middle;
+             width:400px;
+             height:400px;
+             border-radius:100px;
+             -moz-border-radius : 100px;
+             -webkit-border-radius : 100px;
+             -ms-border-radius :100px;
+             -khtml-border-radius : 100px;
+             -o-border-radius :100px;
+        }
+        
+        .button{
+             font-size: 30px;
+             border: 1px solid black;
+             text-align: center;
+             display:table-cell;
+             vertical-align:middle;
+             background-color: gray;
+             width:50px;
+             height:50px;
+             border-radius:40px;
+             -moz-border-radius : 100px;
+             -webkit-border-radius : 100px;
+             -ms-border-radius :100px;
+             -khtml-border-radius : 100px;
+             -o-border-radius :100px;
+        }
+        .col-md-3{
+            text-align: center;
+        }
+        /* 
+        div{
+            border: 1px solid black;
+        } */
+    </style>
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12"><h4>*키보드 숫자1 누르면 1번 테이블 숫자 +1</h4></div>
+    </div>
+    <div class="row">
+            <div class="col-md-3">일산마두
+                    <div id="likes" class="figure"></div>                   
+            </div>
+            <div class="col-md-3">강서화곡
+                    <div id="likes2" class="figure2"></div>        
+            </div>
+            <div class="col-md-3">일산주엽
+                    <div id="likes3" class="figure3"></div>        
+            </div>
+            <div class="col-md-3">마포성산
+                    <div id="likes4" class="figure4"></div>        
+            </div>            
+    </div>
+    <div class="row">
+            <div class="col-md-12">
+                <h1><a href="http://band.us/band/67664247">소스관리공개밴드링크</a></h1>
+            </div>
+    </div>
+    <div class="row">
+            <div class="col-md-1">
+                <div class="button">1</div>
+            </div>
+            <div class="col-md-1">
+                <div class="button">2</div>
+            </div>
+            <div class="col-md-1">
+                <div class="button">3</div>
+            </div>
+            <div class="col-md-1">
+                <div class="button">4</div>
+            </div>
+    </div>
+</div>
+
+<!-- 키눌렀을떄 +1 숫자 보여주는 디스플레이 -->
+<script>
+var config = {
+    apiKey: "AIzaSyA9N7yJF_SSuA5KjqsmefM3XmQJL4obVOg",
+    authDomain: "web-quickstart-bed85.firebaseapp.com",
+    databaseURL: "https://web-quickstart-bed85.firebaseio.com",
+    projectId: "web-quickstart-bed85",
+    storageBucket: "web-quickstart-bed85.appspot.com",
+    messagingSenderId: "161167707098"
+    };
+    firebase.initializeApp(config);
+
+    /* database를 참조한다 */    
+    var database = firebase.database();
+
+    /* key 값이 name인 값의 전체를 불러온다 */  
+    const clicksDatabses = firebase.database().ref().child('name');
+    clicksDatabses.once('value', snap => {
+        /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
+        var clicks = snap.val();
+        /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
+        $("body").keydown(function(event){ 
+        var keynum = event.which;
+        
+        console.log(keynum);
+        /* 49 숫자1 이면 1증가 */
+        if(keynum === 49){
+            clicks++; 
+            $('.figure').html("T1:" + clicks);
+
+            database.ref().update({
+            name: clicks
+            });                
+        };
+    });                
+});
+//            
+    const clicksDatabses2 = firebase.database().ref().child('name2');
+        clicksDatabses2.once('value', snap => {
+            /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
+            var clicks2 = snap.val();
+            /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
+            $("body").keydown(function(event){ 
+                var keynum = event.which;
+                
+                console.log(keynum);
+                /* 49 숫자1 이면 1증가 */
+                if(keynum === 50){
+                    clicks2++; 
+                    $('.figure2').html("T1:" + clicks2);
+
+                    database.ref().update({
+                    name2: clicks2
+                    });                
+                };
+            });                
+        });
+        const clicksDatabses3 = firebase.database().ref().child('name3');
+        clicksDatabses3.once('value', snap => {
+            /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
+            var clicks3 = snap.val();
+            /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
+            $("body").keydown(function(event){ 
+                var keynum = event.which;
+                
+                console.log(keynum);
+                /* 49 숫자1 이면 1증가 */
+                if(keynum === 51){
+                    clicks3++; 
+                    $('.figure3').html("T1:" + clicks3);
+
+                    database.ref().update({
+                    name3: clicks3
+                    });                
+                };
+            });                
+        });
+
+        const clicksDatabses4 = firebase.database().ref().child('name4');
+        clicksDatabses4.once('value', snap => {
+            /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
+            var clicks4 = snap.val();
+            /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
+            $("body").keydown(function(event){ 
+                var keynum = event.which;
+                
+                console.log(keynum);
+                /* 49 숫자1 이면 1증가 */
+                if(keynum === 52){
+                    clicks4++; 
+                    $('.figure4').html("T1:" + clicks4);
+
+                    database.ref().update({
+                    name4: clicks4
+                    });                
+                };
+            });                
+        });
+
+</script>	
+
+
+<!-- 합쳐지고 최소화된 최신 bootstrap 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

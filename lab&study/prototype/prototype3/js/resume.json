@@ -1,0 +1,50 @@
+//https://classroom.udacity.com/courses/ud804/lessons/3077038869/concepts/30710886400923
+
+var bio = {
+      "name" : "william", 
+      "role" : "branch master",
+      "contacts" : {
+            "mobile" : "010-4905-5202",
+            "email" : "tutnunkimpo@gmail.com", 
+            "github" : "tuntunkimpo",
+            "location" : "Suowon"
+        },
+      "welcomeMessage" : "Welcome my site. Thanks!",
+      "skills" : "javascript, jquery, php, java ",
+      "biopic" : "www.naver.com",
+      "display" : function(){
+        }
+};
+
+education contains:
+
+      schools: array of objects with
+           name: string
+           location: string
+           degree: string
+           majors: array of strings
+           dates: integer (graduation date)
+           url: string
+      onlineCourses: array with
+           title: string
+           school: string
+           date: integer (date finished)
+           url: string
+      display: function taking no parameters
+work contains
+
+      jobs: array of objects with
+           employer: string 
+           title: string 
+           location: string 
+           dates: string (works with a hyphen between them)
+           description: string 
+      display: function taking no parameters
+projects contains:
+
+      projects: array of objects with
+            title: string 
+            dates: string (works with a hyphen between them)
+            description: string
+            images: array with string urls
+      display: function taking no parameters

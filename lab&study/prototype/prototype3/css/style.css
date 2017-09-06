@@ -1,0 +1,23 @@
+
+*{
+    /* google web font */
+    font-family: 'Raleway', sans-serif; 
+    
+}
+
+.logo{
+    width: 100px;
+    padding-top: 15px;
+    text-align: left;
+}
+
+.hr{
+    margin-top: 0;
+}
+
+/* 브라우저 사이즈가 991 이하가 되면 */
+@media only screen and (max-width: 991px) {
+    .supertitle{
+        text-align: left;
+    }
+}

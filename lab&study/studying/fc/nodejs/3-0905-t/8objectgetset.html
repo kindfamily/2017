@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function Person(){
+    this.name = "hello";
+    }
+    Person.prototype.speack = function(){
+        console.log(this.name + " speack");
+    };
+    var myMan = Object.create(Person.prototype);
+    Object.defineProperties(myMan ,{
+        name : {
+            value : "myMan",
+            writable : true
+        },
+        hold : {
+            // 변수를 그냥 불러올때
+            get : function(){
+                console.log(this.name + " hold");
+            },
+            // 변수를 바꿀때
+            set : function(value){
+                this.name = value;
+                console.log('set hold function');
+            }
+        }
+    });
+    myMan.hold = "hello";
+    myMan.hold;
+
+    </script>
+    
+</body>
+</html>

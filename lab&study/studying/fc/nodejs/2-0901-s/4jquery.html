@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- jquery CDN -->
+
+</head>
+<body>
+    <script>
+        // jqdoc 입력->tab 클릭
+        $(document).ready(function () {
+            
+        });
+
+        // css 속성지정
+        $('#actionDiv').click(function() {
+            $(this).css('color','red');
+        });
+
+        // 클릭시 클래스 추가
+        $(document).ready(function() {
+            $('#actionDiv').click(function() {
+                $(this).addClass('color_red');
+            });
+        });
+
+        // 클릭시 클래스 삭제
+        $(document).ready(function() {
+            $('#actionDiv').click(function() {
+                $(this).removeClass('color_red');
+            });
+        });
+
+        // toggle
+        // 클래스가 존재하면 removeClass 없으면
+        // addClass 작동 
+        $(document).ready(function() {
+            $('#actionDiv').click(function() {
+                $(this).toggleClass('color_red');
+            });
+        });
+
+
+    </script>
+    
+</body>
+</html>

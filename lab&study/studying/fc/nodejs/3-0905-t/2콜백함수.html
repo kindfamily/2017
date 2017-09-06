@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 함수가 끈나고 인자로 받은 함수를 실행
+    // 간단히 만들어보기
+
+    function test(name, title , callback){
+        // cllback 함수를 인자로 받아서
+        this.name = name;
+        this.title = title;
+        console.log('call function!');
+        // callback을 함수 호출하듯이 호출해 놓으면
+        callback();
+    }
+
+    test( "haha" , "kkk" , function(){
+        console.log('call callback');
+    });   // 익명함수로 호출할 수 있음
+
+
+    // 인자를 넣어서 사용해보기
+    function test(name, title , callback){
+        this.name = name;
+        this.title = title;
+        console.log('call function!');
+        callback("11111");
+    }
+
+    test( "haha" , "kkk" , function( firstArg ){
+        console.log(firstArg);
+    });
+
+    // 인자를 받지 않고 콜백 호출
+    function test(name, title , callback){
+        this.name = name;
+        this.title = title;
+        console.log('call function!');
+        callback(1,2,3,4,5,6);
+    }
+
+    test( "haha" , "kkk" , function(){   //호출인자를 받는다
+        for(var i=0 ; i<arguments.length ; i++){
+            console.log( i+1 + "번째 = " +  arguments[i]);
+        }
+    }); // 익명함수로 호출함
+
+    // 익명함수가 아닌 일반 함수로 받기
+    function test(name, title , callback){
+        this.name = name;
+        this.title = title;
+        console.log('call function!');
+        callback(1,2,3,4,5,6);
+    }
+    function outCallBack(){
+        console.log('outer callBack');
+    }
+    test( "haha" , "kkk" , outCallBack ); // 익명함수로 호출함
+
+
+    </script>
+    
+</body>
+</html>

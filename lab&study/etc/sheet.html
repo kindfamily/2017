@@ -1,0 +1,71 @@
+
+<head>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<style>
+		#sendComment {
+		width:140px;
+		background:#eee;
+		padding:10px;
+		border:#999 solid 1px;
+		font-size:0.8em;
+		float:right;
+		}
+		#sendComment p {
+		line-height:2em;
+		padding:0; margin:0;
+		}
+		#sendComment div {
+		display:none;
+		}
+		#sendComment a {
+		text-decoration:none;
+		color:#aaa;
+		margin-left:65px;
+		}
+
+</style>
+</head>
+<body>
+	<div id="sendComment">
+	  <p>오류 제보하기</p>
+	  <div>
+		<input type="checkbox" value="내용상 오류가 있음"/>내용상 오류가 있음<br/>
+		<input type="checkbox" value="표시에 문제가 있음"/>표시에 문제가 있음<br/>
+		<input type="checkbox" value="기타 수정이 필요함"/>기타 수정이 필요함<br/>
+		<textarea placeholder="구체적 내용이나 기타 의견을 남겨주세요."></textarea><br/>
+		<input type="button" value="보내기" onclick="sendComment();">
+		<a href="http://nubiz.tistory.com/551">(?)</a>
+	  </div>
+	</div>
+	<div style="clear:both" />
+
+	<script>
+	//오류제보하기 - http://nubiz.tistory.com/551
+	$("#sendComment>p").click(function(){
+	  $("#sendComment>div").toggle(100);
+	});
+	function sendComment (){
+	  $("#sendComment *").attr("disabled","");
+	  var errors = []
+	  $("#sendComment :checkbox:checked").each(function(i){
+		errors[i] = $(this).val();
+	  });
+	  var comment = $("#sendComment textarea").val();
+	  $.ajax({
+		url: "https://script.google.com/macros/s/AKfycbx4mZ8zG1FIzhtuH4TQr4le2wJy3HZQWjLZO3zNot0rxGOcozi-/exec",
+		data: {
+		  path: decodeURIComponent(location.pathname),
+		  memo: errors+" / "+comment
+		},
+		type: "POST",
+		success:function(){
+		  alert("빠른 시일 내에 검토해보겠습니다.\n감사합니다.");
+		  $("#sendComment :disabled").removeAttr("disabled");
+		  $("#sendComment textarea").val('');
+		  $("#sendComment :checkbox").prop("checked",false);
+		}
+	  });
+	}
+	</script>	
+</body>	
+

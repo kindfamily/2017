@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+   <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatibel" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>linked</title>		
+		<!-- jquery mobile -->
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+		
+		<!-- Jquery CDN	-->
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+		<!-- 합쳐지고 최소화된 최신 CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+		<!-- 부가적인 테마 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		
+		<!-- 각종 효과 css 모음 -->
+		<link rel="stylesheet" href="./css/style.css">
+		
+		<!-- 조작하는 js파일 모음 이지만 우선은 html파일을 대체하는 스크립트 모음 -->
+		<script src="./js/app.js"></script>
+		
+		<!-- Dom 노드들 조각 모음 -->
+		<script src="./js/helper.js"></script>
+		
+		<!-- 진동이미지 jquery ui 라이브러리 -->
+	    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+		<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="./jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+		
+		<!-- jquery mobile -->
+		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		
+		<style>
+         /* 슬라이드쇼 스타일*/
+        * {box-sizing:border-box}
+        body {font-family: Verdana,sans-serif;}
+        .mySlides {display:none}
+
+        /* Slideshow container */
+        .slideshow-container {
+          max-width: 100%;
+          position: relative;
+          margin: auto;
+        }
+
+        /* Caption text */
+        .text {
+          color: #f2f2f2;
+          font-size: 15px;
+          padding: 8px 12px;
+          position: absolute;
+          bottom: 8px;
+          width: 100%;
+          text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+          color: #f2f2f2;
+          font-size: 12px;
+          padding: 8px 12px;
+          position: absolute;
+          top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+          height: 13px;
+          width: 13px;
+          margin: 0 2px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.6s ease;
+        }
+
+        .active {
+          background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+          -webkit-animation-name: fade;
+          -webkit-animation-duration: 1.5s;
+          animation-name: fade;
+          animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+          from {opacity: .4} 
+          to {opacity: 1}
+        }
+
+        @keyframes fade {
+          from {opacity: .4} 
+          to {opacity: 1}
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+          .text {font-size: 11px}
+        }
+        </style>
+		
+	</head>
+	<body>
+	     <div class="container">
+           <div class="row">
+           		<div id="header" class="col-md-12" style="border-bottom: 1px solid gray;">
+					<h1>카카오스토리<span class="badge">14</span></h1>
+          		</div>
+           </div>
+           <div class="row container" style=" margin-top:7%; margin-bottom: 7%;">
+               
+               
+           <!-- 슬라이드쇼 부트스트랩    -->
+
+          <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel" style="padding-bottom: 0px;">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+
+              <div class="item active">
+                <a href="https://story.kakao.com/_4S0Mu6"><img src="la.jpg" alt="Los Angeles" style="width:100%;"></a>
+                <div class="carousel-caption">
+                  <h3>안양만안카스</h3>
+<!--                   <p>이름ㆍ임수현 나이ㆍ6세튼튼영어 이력ㆍ2년 </p>-->
+                </div>
+              </div>
+
+              <div class="item">
+                <a href="https://story.kakao.com/ch/tuntun0582/gYtNMPdJde0"><img src="chicago.jpg" alt="Chicago" style="width:100%;"></a>
+                <div class="carousel-caption">
+                  <h3>울산삼산카스</h3>
+<!--                  <p>즐겁게 노래 부르기 !!</p>-->
+                </div>
+              </div>
+
+              <div class="item">
+                <a href="https://story.kakao.com/ch/tuntun"><img src="ny.jpg" alt="New York" style="width:100%;"></a>
+                <div class="carousel-caption">
+<!--                  <h3>튼튼영어</h3>-->
+<!--                  <p>공식카스</p>-->
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev" style="
+    left: 15px; bottom: 12px;">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next" style="
+    right: 15px; bottom: 12px;">
+              <span class="glyphicon glyphicon-chevron-right" ></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          		
+           </div>
+           <div class="row">
+           		<div class="col=md-12">
+					<!-- 검색표 -->
+           			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" style="height=100%; margin-bottom: 0px;">
+					<!-- todo: li a 안에 데이터 변경해서 javascript로 뿌려주는 틀 만들기 유다시티 폼 -->
+					<ul id="myUL">
+						<li class="toggle"><a href="https://story.kakao.com/ch/tuntun">튼튼영어 공식 카카오스토리<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li class="toggle"><a href="https://pf.kakao.com/_fALxdxl">튼튼영어 공식 카카오플러스<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/tuntungimpo" class="header">김포<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/tuntunmapo" class="header">마포성산<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/ch/tuntunmagok" class="header">강서마곡<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/ttuntun26902527" class="header">강서화곡<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/go1woo" class="header">대전유성<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/_4S0Mu6" class="header">안양만안<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/ch/tuntun1122" class="header">안양평촌<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/sharksjh" class="header">대구성서<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/_hB5g56" class="header">서초방배<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/tuntun0582" class="header">울산삼산<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/tuntun001" class="header">전주<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+						<li><a href="https://story.kakao.com/ch/tuntundongtan" class="header">화성1동탄<img src="./img/kakaostrorylogo.png" alt=""></a></li>
+					</ul>
+           		</div>
+           </div>
+		</div>
+          <div id="toggle"></div>
+           <script>
+			   
+			// 검색 폼 자바스크립트
+			function myFunction() {
+				// Declare variables
+				var input, filter, ul, li, a, i;
+				input = document.getElementById('myInput');
+				filter = input.value.toUpperCase();
+				ul = document.getElementById("myUL");
+				li = ul.getElementsByTagName('li');
+
+				// Loop through all list items, and hide those who don't match the search query
+				for (i = 0; i < li.length; i++) {
+					a = li[i].getElementsByTagName("a")[0];
+					if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+			</script>
+          
+           
+			<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	</body>
+</html>
