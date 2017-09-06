@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>보험클로젯</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="./db/list.js"></script>
+		<script src="./db/data_1.js"></script>
+		<script src="./db/data_2.js"></script>
+		<script src="./db/data_3.js"></script>
+		<style>
+			tspan {
+				font-weight: bold;
+			}
+			#data_grid tbody {
+				color: black;
+			}
+			#recommendation tbody {
+				color: black;
+			}
+		</style>
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="index.html">보험클로젯</a></div>
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="generic.html">Generic</a></li>
+				</ul>
+			</nav>
+
+		<!-- One -->
+			<section id="One" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>inquiry of my insurarance information</p>
+						<h2>나의 보험정보 조회</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+						<!-- 
+							<header class="align-center">
+								<p>maecenas sapien feugiat ex purus</p>
+								<h2>Lorem ipsum dolor</h2>
+							</header>
+						-->
+
+							<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+							<br/><br/><br/>
+							<header class="align-center" id="data_grid_header">
+							</header>
+							
+							<div id="data_grid">
+								<table>
+									<thead>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+							
+							
+							
+							<div id="recommendation" style="display: none;">
+								<br/><br/><br/>
+								<header class="align-center">
+									<p>RECOMMENDED insurance</p>
+									<h2>추천 보험</h2>
+								</header>
+								<table>
+									<thead>
+										<tr>	<th>추천 보험</th><th>추천 보험사</th>	</tr>
+									</thead>
+									<tbody>
+										<tr>	<td rowspan="3">사망자금</td>	<td>동양생명 하늘애 정기보험</td>	</tr>
+										<tr>								<td>알리안츠 트튼가장 든든보험</td>	</tr>
+										<tr>								<td>흥국생명 꼭한번정기보험</td>	</tr>
+										<tr>	<td rowspan="3">상해보험</td>	<td>삼성생명 누구나 상해보험</td>	</tr>
+										<tr>								<td>신한생명 명풍상해보험</td>		</tr>
+										<tr>								<td>DGB생명 가족 사랑 정기보험</td>	</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. All rights reserved.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+
+		<script>
+			Highcharts.chart('container', {
+			    chart: {
+			        type: 'bar',
+			    },
+			    title: {
+			        text: '나(미혼, 프로그래머, 서울, 30대)의 보험가입정보와 표준정보 비교'
+			    },
+			    subtitle: {
+			        text: '표준정보는 한국보험데이터 정보입니다.'
+			    },
+			    xAxis: {
+			        categories: ['kb손해 생명보험', '라이나 치아보험', '한화 암보험'],
+			        title: {
+			            text: null
+			        }
+			    },
+			    yAxis: {
+			        min: 0,
+			        title: {
+			            text: '금액 (원)',
+			            align: 'high'
+			        },
+			        labels: {
+			            overflow: 'justify'
+			        }
+			    },
+			    tooltip: {
+			        valueSuffix: ' 원'
+			    },
+			    plotOptions: {
+			        bar: {
+			            dataLabels: {
+			                enabled: true
+			            }
+			        },
+			        series: {
+			            cursor: 'pointer',
+			            events: {
+			            	click: function (event) {
+			            		
+			            		var data_grid = document.getElementById('data_grid');
+			            		var tbody = data_grid.querySelector('table tbody');
+			            		
+			            		var nb = (Math.floor(Math.random() * 10) % 3 + 1);
+			            		
+			            		var get_data;
+			            		var title;
+			            		
+			            		if(nb == 1)			{	get_data = data_1;	title = 'kb손해 생명보험';}
+			            		else if(nb == 2)	{	get_data = data_2;	title = '라이나 치아보험험';}
+			            		else 				{	get_data = data_3;	title = '한화 암보험';}
+			            		
+			            		
+            					document.getElementById('data_grid_header').innerHTML = '	<p>가입금액 비교하기</p><h2>'+ title +'</h2>';
+            					
+            					
+			            		var html = '';
+			            		for(var i = 0; i < get_data.length; i++){
+			            			var data = get_data[i];
+			            			
+			            			html += '<tr>';
+			            			html += '	<td>'+ data.insurance_coverage +'</td>';
+			            			html += '	<td>'+ data.my_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>';
+			            			html += '	<td>'+ data.standard_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>';
+			            			html += '</tr>';
+			            		}
+			            		data_grid.querySelector('table thead').innerHTML = '<tr><th>보장내용</th><th>나의 가입금액</th><th>표준 가입금액</th></tr>';
+			            		tbody.innerHTML = html;
+			            		
+			            		document.getElementById('recommendation').style.display = 'block';
+			                }
+			            }
+			        }
+			    },
+			    legend: {
+			        layout: 'vertical',
+			        align: 'right',
+			        verticalAlign: 'top',
+			        x: 0,
+			        y: 40,
+			        floating: true,
+			        borderWidth: 1,
+			        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+			        shadow: true
+			    },
+			    credits: {
+			        enabled: false
+			    },
+			    series: my_list
+			});
+		</script>
+	</body>
+</html>
