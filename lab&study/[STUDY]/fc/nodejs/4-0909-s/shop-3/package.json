@@ -1,0 +1,17 @@
+{
+  "name": "shop-3",
+  "version": "1.0.0",
+  "description": "shopping mall",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./app.js"
+  },
+  "author": "bill",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.10",
+    "mongoose-auto-increment": "^5.0.1"
+  }
+}
