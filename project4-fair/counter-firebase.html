@@ -167,48 +167,60 @@ var config = {
     /* database를 참조한다 */    
     var database = firebase.database();
 
-    /* key 값이 name인 값의 전체를 불러온다 */  
-    const clicksDatabses = firebase.database().ref().child('name');
-    clicksDatabses.once('value', snap => {
-        /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
-        var clicks = snap.val();
-        /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
-        $("body").keydown(function(event){ 
-        var keynum = event.which;
-        
-        console.log(keynum);
-        /* 49 숫자1 이면 1증가 */
-        if(keynum === 49){
-            clicks++; 
-            $('.figure').html("T1:" + clicks);
+        /* key 값이 name인 값의 전체를 불러온다 */  
+        const clicksDatabses = firebase.database().ref().child('name');
+        clicksDatabses.once('value', snap => {
+            /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
+            var clicks = snap.val();
 
-            database.ref().update({
-            name: clicks
-            });                
-        };
-    });                
-});
-//            
-    const clicksDatabses2 = firebase.database().ref().child('name2');
+            $(document).ready(function () {
+                    // 시작하자마자 현재 값을 출력
+                    $('.figure').html("T1:" + clicks);
+
+                    /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
+                    $("body").keydown(function(event){ 
+                    var keynum = event.which;
+                    console.log(keynum);
+                    /* 49 숫자1 이면 1증가 */
+                    if(keynum === 49){
+                        clicks++; 
+                        $('.figure').html("T1:" + clicks);
+
+                        database.ref().update({
+                        name: clicks
+                        });                
+                    };
+                });     
+            });                            
+        });
+          
+        const clicksDatabses2 = firebase.database().ref().child('name2');
         clicksDatabses2.once('value', snap => {
             /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
             var clicks2 = snap.val();
-            /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
-            $("body").keydown(function(event){ 
-                var keynum = event.which;
-                
-                console.log(keynum);
-                /* 49 숫자1 이면 1증가 */
-                if(keynum === 50){
-                    clicks2++; 
-                    $('.figure2').html("T1:" + clicks2);
 
-                    database.ref().update({
-                    name2: clicks2
-                    });                
-                };
+            $(document).ready(function () {
+                    // 시작하자마자 현재 값을 출력
+                    $('.figure2').html("T2:" + clicks2);
+
+                    /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
+                    $("body").keydown(function(event){ 
+                    var keynum = event.which;
+                    console.log(keynum);
+                    /* 49 숫자1 이면 1증가 */
+                    if(keynum === 49){
+                        clicks2++; 
+                        $('.figure2').html("T2:" + clicks2);
+
+                        database.ref().update({
+                        name: clicks2
+                        });                
+                    };
+                });     
             });                
         });
+
+
         const clicksDatabses3 = firebase.database().ref().child('name3');
         clicksDatabses3.once('value', snap => {
             /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
