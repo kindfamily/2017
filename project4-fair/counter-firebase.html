@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
     <style>
-        #likes{
+        .likes{
              font-size: 30px;
              border: 1px solid black;
              text-align: center;
@@ -37,7 +37,7 @@
              -ms-border-radius :100px;
              -khtml-border-radius : 100px;
              -o-border-radius :100px;
-        }
+        /* }
         #likes2{
              font-size: 30px;
              border: 1px solid black;
@@ -84,7 +84,7 @@
              -ms-border-radius :100px;
              -khtml-border-radius : 100px;
              -o-border-radius :100px;
-        }
+        } */
         
         .button{
              font-size: 30px;
@@ -102,6 +102,7 @@
              -khtml-border-radius : 100px;
              -o-border-radius :100px;
         }
+
         .col-md-3{
             text-align: center;
         }
@@ -115,39 +116,25 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12"><h4>수정본본입니다*키보드 숫자1 누르면 1번 테이블 숫자 +1</h4></div>
+        <div class="col-md-12"><h4>* 키보드 상단 숫자1 누르면 순서대로 1번 테이블 숫자 +1</h4></div>
     </div>
     <div class="row">
-            <div class="col-md-3">일산마두
-                    <div id="likes" class="figure"></div>                   
+            <div class="col-md-3">
+                <div class="figure likes"></div>                   
             </div>
-            <div class="col-md-3">강서화곡
-                    <div id="likes2" class="figure2"></div>        
+            <div class="col-md-3">
+                <div class="figure2 likes"></div>        
             </div>
-            <div class="col-md-3">일산주엽
-                    <div id="likes3" class="figure3"></div>        
+            <div class="col-md-3">
+                <div class="figure3 likes"></div>        
             </div>
-            <div class="col-md-3">마포성산
-                    <div id="likes4" class="figure4"></div>        
+            <div class="col-md-3">
+                <div class="figure4 likes"></div>        
             </div>            
     </div>
     <div class="row">
             <div class="col-md-12">
                 <h1><a href="http://band.us/band/67664247">소스관리공개밴드링크</a></h1>
-            </div>
-    </div>
-    <div class="row">
-            <div class="col-md-1">
-                <div class="button">1</div>
-            </div>
-            <div class="col-md-1">
-                <div class="button">2</div>
-            </div>
-            <div class="col-md-1">
-                <div class="button">3</div>
-            </div>
-            <div class="col-md-1">
-                <div class="button">4</div>
             </div>
     </div>
 </div>
@@ -175,7 +162,7 @@ var config = {
 
             $(document).ready(function () {
                     // 시작하자마자 현재 값을 출력
-                    $('.figure').html("T1:" + clicks);
+                    $('.figure').html("<h1>일산마두</h1><h4>상담숫자:" + clicks + "</h4>");
 
                     /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
                     $("body").keydown(function(event){ 
@@ -184,7 +171,7 @@ var config = {
                     /* 49 숫자1 이면 1증가 */
                     if(keynum === 49){
                         clicks++; 
-                        $('.figure').html("T1:" + clicks);
+                        $('.figure').html("<h1>일산마두</h1><h4>상담숫자:" + clicks + "</h4>");
 
                         database.ref().update({
                         name: clicks
@@ -201,7 +188,7 @@ var config = {
 
             $(document).ready(function () {
                     // 시작하자마자 현재 값을 출력
-                    $('.figure2').html("T2:" + clicks2);
+                    $('.figure2').html("<h1>강서화곡</h1><h4>상담숫자:" + clicks2 + "</h4>");
 
                     /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
                     $("body").keydown(function(event){ 
@@ -210,7 +197,7 @@ var config = {
                     /* 49 숫자1 이면 1증가 */
                     if(keynum === 50){
                         clicks2++; 
-                        $('.figure2').html("T2:" + clicks2);
+                        $('.figure2').html("<h1>강서화곡</h1><h4>상담숫자:" + clicks2 + "</h4>");
 
                         database.ref().update({
                         name: clicks2
@@ -225,44 +212,55 @@ var config = {
         clicksDatabses3.once('value', snap => {
             /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
             var clicks3 = snap.val();
-            /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
-            $("body").keydown(function(event){ 
-                var keynum = event.which;
+            
+            $(document).ready(function () {
+                    // 시작하자마자 현재 값을 출력
+                    $('.figure3').html("<h1>일산주엽</h1><h4>상담숫자:" + clicks3 + "</h4>");
                 
-                console.log(keynum);
-                /* 49 숫자1 이면 1증가 */
-                if(keynum === 51){
-                    clicks3++; 
-                    $('.figure3').html("T1:" + clicks3);
+                    /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
+                    $("body").keydown(function(event){ 
+                    var keynum = event.which;
+                    
+                    console.log(keynum);
+                    /* 49 숫자1 이면 1증가 */
+                    if(keynum === 51){
+                        clicks3++; 
+                        $('.figure3').html("<h1>일산주엽</h1><h4>상담숫자:" + clicks3 + "</h4>");
 
-                    database.ref().update({
-                    name3: clicks3
+                        database.ref().update({
+                        name3: clicks3
                     });                
                 };
-            });                
-        });
+            });     
+        });                
+    });
 
         const clicksDatabses4 = firebase.database().ref().child('name4');
         clicksDatabses4.once('value', snap => {
             /* value 값을 snap.val()으로 불러와서 clicks에 담는다 */
             var clicks4 = snap.val();
-            /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
-            $("body").keydown(function(event){ 
-                var keynum = event.which;
-                
-                console.log(keynum);
-                /* 49 숫자1 이면 1증가 */
-                if(keynum === 52){
-                    clicks4++; 
-                    $('.figure4').html("T1:" + clicks4);
+            
+            $(document).ready(function () {
+                    // 시작하자마자 현재 값을 출력
+                    $('.figure4').html("<h1>마포성산</h1><h4>상담숫자:" + clicks4 + "</h4>");
+            
+                    /* 버튼을 눌렀을때 clicks에 1을 더하고 databse에 저장한다 */
+                    $("body").keydown(function(event){ 
+                    var keynum = event.which;
+                    
+                    console.log(keynum);
+                    /* 49 숫자1 이면 1증가 */
+                    if(keynum === 52){
+                        clicks4++; 
+                        $('.figure4').html("<h1>마포성산</h1><h4>상담숫자:" + clicks4 + "</h4>");
 
-                    database.ref().update({
-                    name4: clicks4
+                        database.ref().update({
+                        name4: clicks4
                     });                
                 };
-            });                
-        });
-
+            });     
+        });                
+    });
 </script>	
 
 
