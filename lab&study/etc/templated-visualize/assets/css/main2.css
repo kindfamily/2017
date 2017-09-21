@@ -1,0 +1,140 @@
+#wrapper{
+/*    border: 5px solid red;*/
+    max-width: 68rem;
+    margin: 5rem auto;
+}
+#wrapper>*{
+/*    border:5px solid yellow;*/
+}
+#wrapper>*>*{
+    /*border:5px solid blue;*/
+}
+body{
+    background-image: url(../../images/bg.jpg);
+    background-size: cover;
+}
+#header{
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+#header .avatar {
+    border-radius: 100%;
+    display:inline-block;
+    padding: 0.5rem;
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,365,255,0.25);
+    margin-bottom: 1.5rem;
+}
+#header .avatar img{
+    border-radius: 100%;
+    display: block;
+    padding: 1rem;
+    /*rem 사용자가 폰트 크기 변화 시키는 거에 따라서 변하게 하는 단위*/
+}
+#header h1{
+    font-size: 1/5re,;
+    color: rgba(255,255,255,0.5);
+    font-weight: 200;
+    font-family: 'Coiny', cursive;
+    margin-bottom: 1.5rem;
+    line-height: 2.3rem;
+}
+#header h1 strong{
+    color: white;
+    font-weight: 200;
+}
+#header h1 a{
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(255,255,255,0.5);
+}
+
+#header ul.icons li{
+    display: inline-block;
+    border-radius: 100%;
+    border: 1px solid rgba(255,365,255,0.25);
+    background-color: rgba(255,255,255,0.05);
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+/*소셜 링크에 마우스 올렸을때 배경색 변화 시키기*/
+#header ul.icons li:hover{
+    border: 1px solid rgba(255,365,255,0.25);
+    background-color: rgba(255,255,255,0.08);
+}
+    #header ul.icons li a{
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    
+}
+#header ul.icons li .label{
+    display: none;   
+}
+#main .thumbnails {
+    display: flex;
+}
+#main .thumbnails>div {
+    flex-grow: 1;
+/*    border: 1px solid red;*/
+    margin-right: 1rem;
+    margin-left:  1rem;
+}
+#main .thumbnails a{
+    margin-bottom: 1.5rem;
+    display: block;
+}
+#main .thumbnails img {
+    width: 100%;
+    border-top-left-radius: 0.6rem;
+    border-top-right-radius: 0.6rem;
+    display: block;
+}
+#main .thumbnails h3{
+    border-left: 1px solid rgba(255,255,255,0.3);
+    border-right: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: rgba(255,255,255,0.3);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 200;
+}
+
+/*footer 부분에 글씨개수에 따라서 위에 하얀 테두리가 변경 */
+#footer{
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-weight: 200;
+    padding-bottom: 3rem;
+    font-size: 0.8rem;
+}
+#footer a{
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(255,255,255,0.5);
+}
+
+#footer:before{
+    content: '';
+    display: block;
+    margin: 2rem auto;
+    width: 10rem;
+    border-top:1px solid rgba(255,255,255,0.5);
+}
+
+/* 미디어 쿼리 아무리 작아져도 480px */
+@media(max-width:480px){
+            #main .thumbnails {
+            display: block;
+        }
+    
+}
